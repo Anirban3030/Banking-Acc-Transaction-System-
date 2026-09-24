@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Profile | MyBank</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body class="dashboard-page">
+<nav class="navbar bg-white border-bottom">
+    <div class="container">
+        <a class="navbar-brand brand-link" th:href="@{/dashboard}">
+            <span class="brand-mark brand-mark-small">MB</span> MyBank
+        </a>
+        <a class="btn btn-outline-primary btn-sm" th:href="@{/logout}">Logout</a>
+    </div>
+</nav>
+
+<main class="container py-4 py-lg-5">
+    <a class="small" th:href="@{/dashboard}">← Back to dashboard</a>
+    <div class="profile-shell mt-4">
+        <div class="content-card">
+            <div class="profile-heading">
+                <div class="profile-avatar"
+                     th:text="${#strings.substring(customer.name, 0, 1).toUpperCase()}">A</div>
+                <div>
+                    <p class="eyebrow mb-1">CUSTOMER PROFILE</p>
+                    <h1 class="display-6 fw-bold mb-1">My profile</h1>
+                    <p class="text-secondary mb-0">Your personal information at MyBank.</p>
+                </div>
+            </div>
+
+            <div class="profile-details mt-4">
+                <div class="profile-detail">
+                    <span class="small text-secondary">Full name</span>
+                    <strong th:text="${customer.name}">Anirban Mondal</strong>
+                </div>
+                <div class="profile-detail">
+                    <span class="small text-secondary">Email address</span>
+                    <strong th:text="${customer.email}">anirban@example.com</strong>
+                </div>
+                <div class="profile-detail">
+                    <span class="small text-secondary">Phone number</span>
+                    <strong th:text="${customer.phone.length() > 4 ? '••••••' + #strings.substring(customer.phone, customer.phone.length() - 4) : customer.phone}">
+                        ••••••1234
+                    </strong>
+                </div>
+            </div>
+
+            <div class="alert alert-info mt-4 mb-0">
+                Profile editing is not enabled in this version. Your information is shown securely from your customer record.
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
